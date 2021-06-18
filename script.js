@@ -23,3 +23,14 @@ class Enemy extends Box{
         super(50, 'red')
     }
 }
+
+let player = new Player()
+let e1 = new Enemy()
+let e2 = new Enemy()
+e1.x = 120
+e2.x = 240
+
+function drawBox(box){
+    pen.fillStyle = box.color;
+    pen.fillRect(box.x, box.y, box.size, box.size);   
+}
