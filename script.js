@@ -15,8 +15,23 @@ class Player extends Box{
         super(50, 'blue')
         this.x = 0;
         this.y = 225;
+        this.speed = 0;
+    }
+
+    move(){
+        this.x += this.speed
     }
 }
+
+myCanvas.addEventListener('mousedown', ()=>{
+    player.speed = 5;
+    console.log('moving');
+})
+
+myCanvas.addEventListener('mouseup', ()=>{
+    player.speed = 0;
+    console.log('not moving');
+})
 
 class Enemy extends Box{
     constructor(speed){
@@ -54,9 +69,11 @@ function updateGame() {
         e1.move();
         e2.move();
         e3.move();
+        player.move();
         drawBox(e1)
         drawBox(e2)
         drawBox(e3)
+        drawBox(player)
         updateGame();
     })
 }
