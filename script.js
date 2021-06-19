@@ -3,6 +3,7 @@ let pen = myCanvas.getContext("2d");
 
 let gameOn = true;
 let playerSpeed = 1.4;
+let wonGame = false;
 
 class Box{
     constructor(size, color){
@@ -77,6 +78,7 @@ function drawBox(box){
 
 function updateGame() {
     if(!gameOn) return;
+    if(wonGame) return;
     window.requestAnimationFrame(() => {
         pen.clearRect(0, 0, 500, 500);
         e1.move();
@@ -87,6 +89,11 @@ function updateGame() {
         if(isCollided(e1, player) || isCollided(e2, player) || isCollided(e3, player)) {
             window.alert("Game Over")
             gameOn = false;
+        }
+
+        if(finished(finish, player)){
+            window.alert("Game Won")
+            wonGame = true;
         }
 
         drawBox(finish)
@@ -102,4 +109,8 @@ updateGame();
 function isCollided(box1, box2) {
     if( (box2.x >= box1.x-50 && box2.x <= (box1.x+50)) && (box2.y >= box1.y-50 && box2.y <= (box1.y+50)))
         return true;
+}
+
+function finished(finish, player){
+    if(player.x >= finish.x+10) return true;
 }
