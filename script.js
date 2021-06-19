@@ -26,6 +26,12 @@ class Player extends Box{
     }
 }
 
+class Finish extends Box{
+    constructor(){
+        super(70, 'yellow');
+    }
+}
+
 myCanvas.addEventListener('mousedown', ()=>{
     player.speed = playerSpeed;
     console.log('moving');
@@ -57,9 +63,12 @@ let player = new Player()
 let e1 = new Enemy(2)
 let e2 = new Enemy(3)
 let e3 = new Enemy(4)
+let finish = new Finish()
 e1.x = 100
 e2.x = 225
 e3.x = 350
+finish.x = 430
+finish.y = 215
 
 function drawBox(box){
     pen.fillStyle = box.color;
@@ -80,6 +89,7 @@ function updateGame() {
             gameOn = false;
         }
 
+        drawBox(finish)
         drawBox(e1)
         drawBox(e2)
         drawBox(e3)
